@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Deploy React App to GitHub Pages
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+At this point in the course, you have spent some time immersed in React and have even created some React apps of your own. React can seem confusing at first, but the good news is that `create-react-app` gives you the tools to build applications from scratch. This guide will show you how to deploy your React app to GitHub Pages while preserving the file structure of your source files. 
 
-## Available Scripts
+Here are a few details to prepare you for this activity:
 
-In the project directory, you can run:
+* The script you'll use is outlined in the `package.json` file for the React app. You will see it listed under the `scripts` section of the `package.json` for the `build` key-value pair.
 
-### `npm start`
+* This command will output to a `/build` directory. This includes a `/build/static` directory that will contain all the required JavaScript and CSS files.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Every file in this folder contains a unique hash of the file contents. The hash tells the browser how to download a fresh copy of the application every time you build it.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Now that we understand a little bit about what this command will do, let's put it into action and get the React app ready for GitHub Pages!
 
-### `npm test`
+# Prepare the Repo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Add Homepage to package.json
 
-### `npm run build`
+First we need to open the `package.json` file for the client and add an entry called `homepage`. The value of `homepage` should have `{username}` as your GitHub username, and `{repo-name}` as the name of the GitHub repository you created: 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+https://{username}.github.io/{repo-name}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Your updated `package.json` should look something like this:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```text
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://thutuephan.github.io/testing-app1",
+```
 
-### `npm run eject`
+## Install gh-pages and Add Deploy Scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To publish your app, you need to install the `gh-pages` npm package. Additionally, you'll need to add a few more scripts to `package.json`. Start by simply adding the `gh-pages` dependency:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+npm i gh-pages
+```
+**Note:** You will see another package manager called `yarn` suggested by `create-react-app`. `yarn` is very similar to `npm`, but for the sake of consistency we will stick with `npm`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Now lets add the `predeploy` and `deploy` scripts to `package.json`. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```text
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+```
 
-## Learn More
+# Deploy the Site
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Now is the time to deploy the React app to GitHub Pages. To do this, run the following command:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+npm run deploy
+```
 
-### Code Splitting
+# Check Project Settings
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Go to the GitHub project settings by clicking the link shown in the following image:
 
-### Analyzing the Bundle Size
+![In GitHub, the Settings tab is underlined in red.](./Images/01-repo-settings.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Check that your source branch is `gh-pages`, as shown in the following image:
 
-### Making a Progressive Web App
+![In the Settings tab of GitHub Pages, gh-pages is set as the Source.](./Images/02-ready.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Note:** Keep in mind that your page may take a minute or two to deploy. At first, the notification will appear in a blue color while being published.
 
-### Advanced Configuration
+Finally, let's refresh the page to make sure that the page has been published. This notification will appear in green, as shown in the following image:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![In GitHub Pages, a green notification states, "Your site is published", followed by a link to the site.](./Images/04-published.png)
 
-### Deployment
+Click on the URL to check that everything looks good.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Reflection
 
-### `npm run build` fails to minify
+You have successfully deployed your React application to GitHub Pages with just a few simple steps. While doing so, you learned about how the React deploy scripts work and how to prepare your repos for a `gh-page` deployment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
