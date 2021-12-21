@@ -29,7 +29,7 @@ Your updated `package.json` should look something like this:
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://thutuephan.github.io/testing-app1",
+  "homepage": "https://githubname.github.io/testing-app1",
 ```
 
 ## Install gh-pages and Add Deploy Scripts
