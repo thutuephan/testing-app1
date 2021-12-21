@@ -1,4 +1,7 @@
-# Deploy React App to GitHub Pages
+# Testing-app
+## Deploy React App to GitHub Pages
+
+The URL of the deployed application: https://thutuephan.github.io/testing-app1/
 
 At this point in the course, you have spent some time immersed in React and have even created some React apps of your own. React can seem confusing at first, but the good news is that `create-react-app` gives you the tools to build applications from scratch. This guide will show you how to deploy your React app to GitHub Pages while preserving the file structure of your source files. 
 
